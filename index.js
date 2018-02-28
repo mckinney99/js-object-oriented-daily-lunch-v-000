@@ -9,7 +9,7 @@ class Customer {
     constructor(name, employer) {
         this.name = name
         this.employer = employer
-        this.id = ++customerId
+        this.id = ++customers
         store.customers.push(this)
     }
       totalSpent() {
