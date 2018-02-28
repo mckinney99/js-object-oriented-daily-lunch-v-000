@@ -6,10 +6,10 @@ let deliveryId = 0
 let employerId = 0
 
 class Customer {
-    constructor(name, employers = []) {
+    constructor(name, employer = []) {
         this.id = ++customerId
         this.name = name
-        this.employer = employers
+        this.employer = employer
         store.customers.push(this)
     }
       totalSpent() {
