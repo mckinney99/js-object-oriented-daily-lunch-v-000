@@ -12,22 +12,24 @@ class Customer {
         this.name = name
         store.customers.push(this)
     }
-      totalSpent() {
-       return this.meals().reduce(function(sum, meal){
-          return meal.price + sum
-       }, 0)
-}
-     deliveries() {
-        return store.deliveries.filter(delivery => {
-            return delivery.customerId === this.id
-        })
-    }
-
+      
     meals() {
-        return this.deliveries().map (delivery => {
-            return delivery.meal()
-        })
+      return this.deliveries().map (delivery => {
+        return delivery.meal()
+    })
+}
+
+    deliveries() {
+      return store.deliveries.filter(delivery => {
+         return delivery.customerId === this.id
+      })
+}
+    totalSpent() {
+     return this.meals().reduce(function(sum, meal){
+        return meal.price + sum
+     }, 0)
     }
+    
 }
 
 class Meal {
