@@ -1,12 +1,12 @@
-let store = {customers: [], meals: [], deliveries: [], employers: []};
+let store = {customers: [], meals: [], deliveries: [], employers: []}
 
-let customerId = 0;
-let mealId = 0;
-let deliveryId = 0;
-let employerId = 0;
+let customerId = 0
+let mealId = 0
+let deliveryId = 0
+let employerId = 0
 
 class Customer {
-    constructor(name, employer = {}) {
+    constructor(name, employer) {
         this.name = name;
         this.id = ++customerId;
         this.employerId = employer.id;
@@ -22,28 +22,28 @@ class Customer {
             return delivery.customerId === this.id
         })
     }
-    
+
     meals() {
         return this.deliveries().map (delivery => {
             return delivery.meal()
         })
     }
 }
-    
+
 class Meal {
     constructor(title, price) {
         this.title = title;
-        this.price = price; 
+        this.price = price;
         this.id = ++mealId;
         store.meals.push(this)
     }
-    
+
     deliveries() {
         return store.deliveries.filter(delivery => {
             return delivery.mealId === this.id
         })
     }
-    
+
     customers() {
         return this.deliveries().map(delivery => {
             return delivery.customer()
@@ -68,7 +68,7 @@ class Delivery {
             return customer.id === this.customerId
         })
     }
-    
+
      meal () {
         return store.meals.find(meal => {
             return meal.id === this.mealId;
@@ -78,7 +78,7 @@ class Delivery {
 
 class Employer {
     constructor(name) {
-        this.name = name; 
+        this.name = name;
         this.id = ++employerId;
         store.employers.push(this);
     }
@@ -99,11 +99,11 @@ class Employer {
       let uniqueMeals = [...new Set(allMeals)];
       return uniqueMeals
     }
-    
+
     mealTotals() {
         let allMeals= this.deliveries().map(delivery => {
             return delivery.meal();
-        });  
+        });
        let  mealTotal = {};
         allMeals.forEach(function(meal){
             mealTotal[meal.id] = 0
@@ -112,6 +112,6 @@ class Employer {
             mealTotal[meal.id] += 1
         } );
         return mealTotal
- 
+
     }
 }
