@@ -6,7 +6,7 @@ let deliveryId = 0
 let employerId = 0
 
 class Customer {
-    constructor(name, employer = []) {
+    constructor(name, employer) {
         this.name = name
         this.id = ++customerId
         this.employerId = employer.id
