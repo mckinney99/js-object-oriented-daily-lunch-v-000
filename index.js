@@ -8,8 +8,8 @@ let employerId = 0
 class Customer {
     constructor(name, employer) {
         this.name = name
+        this.employer = employer
         this.id = ++customerId
-        this.employerId = employer.id
         store.customers.push(this)
     }
       totalSpent() {
