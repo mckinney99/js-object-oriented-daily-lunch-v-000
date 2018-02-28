@@ -1,6 +1,6 @@
 let store = {customers: [], meals: [], deliveries: [], employers: []}
 
-let customerId = 0
+let customers = 0
 let mealId = 0
 let deliveryId = 0
 let employerId = 0
