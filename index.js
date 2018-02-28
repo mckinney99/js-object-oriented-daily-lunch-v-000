@@ -7,15 +7,15 @@ let employerId = 0
 
 class Customer {
     constructor(name, employer = []) {
-        this.name = name;
-        this.id = ++customerId;
-        this.employerId = employer.id;
+        this.name = name
+        this.id = ++customerId
+        this.employerId = employer.id
         store.customers.push(this)
     }
       totalSpent() {
        return this.meals().reduce(function(sum, meal){
           return meal.price + sum
-       }, 0);
+       }, 0)
 }
      deliveries() {
         return store.deliveries.filter(delivery => {
@@ -32,9 +32,9 @@ class Customer {
 
 class Meal {
     constructor(title, price) {
-        this.title = title;
-        this.price = price;
-        this.id = ++mealId;
+        this.title = title
+        this.price = price
+        this.id = ++mealId
         store.meals.push(this)
     }
 
@@ -52,16 +52,16 @@ class Meal {
    static byPrice() {
        return store.meals.sort((meal1, meal2) => {
        return meal1.price < meal2.price
-    });
+    })
 }
 }
 
 class Delivery {
     constructor(meal = {}, customer = {}) {
-        this.id = ++deliveryId;
-        this.mealId = meal.id;
-        this.customerId = customer.id;
-        store.deliveries.push(this);
+        this.id = ++deliveryId
+        this.mealId = meal.id
+        this.customerId = customer.id
+        store.deliveries.push(this)
     }
     customer () {
         return store.customers.find(customer => {
@@ -71,16 +71,16 @@ class Delivery {
 
      meal () {
         return store.meals.find(meal => {
-            return meal.id === this.mealId;
-        });
+            return meal.id === this.mealId
+        })
     }
 }
 
 class Employer {
     constructor(name) {
-        this.name = name;
-        this.id = ++employerId;
-        store.employers.push(this);
+        this.name = name
+        this.id = ++employerId
+        store.employers.push(this)
     }
     employees() {
         return store.customers.filter(customer =>{
@@ -92,26 +92,27 @@ class Employer {
             return delivery.customer().employerId === this.id
         });
     }
-     meals() {
-       let allMeals= this.deliveries().map(delivery => {
-            return delivery.meal();
-        });
-      let uniqueMeals = [...new Set(allMeals)];
-      return uniqueMeals
-    }
+    meals(){
+		  let myMeals = []
+		  this.deliveries().forEach(delivery => {
+			  if (!myMeals.includes(delivery.meal())) {
+				myMeals.push(delivery.meal())
+			}
+		})
+		return myMeals
+	}
 
     mealTotals() {
         let allMeals= this.deliveries().map(delivery => {
-            return delivery.meal();
-        });
-       let  mealTotal = {};
+            return delivery.meal()
+        })
+       let  mealTotal = {}
         allMeals.forEach(function(meal){
             mealTotal[meal.id] = 0
         } )
         allMeals.forEach(function(meal){
             mealTotal[meal.id] += 1
-        } );
+        } )
         return mealTotal
-
     }
 }
