@@ -12,7 +12,7 @@ class Customer {
         this.name = name
         store.customers.push(this)
     }
-      
+
     meals() {
       return this.deliveries().map (delivery => {
         return delivery.meal()
@@ -29,7 +29,7 @@ class Customer {
         return meal.price + sum
      }, 0)
     }
-    
+
 }
 
 class Meal {
